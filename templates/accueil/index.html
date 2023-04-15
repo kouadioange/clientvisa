@@ -1,0 +1,121 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block topbar %}
+    {% include 'base/topbar.html'%}
+{% endblock %}
+{% block left_sidebar %}
+    {% include 'base/left_sidebar.html'%}
+{% endblock %}
+{% block right_sidebar %}
+    {% include 'base/right_sidebar.html'%}
+{% endblock %}
+{% block container %}
+<style>
+  /* Définition de l'animation */
+  @keyframes blink {
+    from { opacity: 1.0; }
+    to { opacity: 0.0; }
+  }
+
+  /* Application de l'animation à la classe "blink" */
+  .blink {
+    animation: blink 0.3s alternate infinite;
+  }
+</style>
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Three charts -->
+    <!-- ============================================================== -->
+    <div class="row justify-content-center " >
+        <div class="col-lg-4 col-md-12">
+            <div class="white-box analytics-info">
+                <h3 class="box-title">Total Achats</h3>
+                <ul class="list-inline two-part d-flex align-items-center mb-0">
+                    <li>
+                        <div id="sparklinedash"><canvas width="67" height="30"
+                                style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                        </div>
+                    </li>
+                    <li class="ms-auto"><span class="counter text-success">{{compte_achat}}</span></li>
+                </ul>
+            </div>
+        </div>
+        {% if produit_expirer %}
+            <div class="col-lg-4 col-md-12 blink">
+                <div class="white-box analytics-info" style="background: red">
+                    <h3 class="box-title">Total Visa expirer</h3>
+                    <ul class="list-inline two-part d-flex align-items-center mb-0">
+                        <li>
+                            <div id="sparklinedash2"><canvas width="67" height="30"
+                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                            </div>
+                        </li>
+                        <li class="ms-auto"><span class="counter text-purple">{{compte}}</span></li>
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+        <div class="col-lg-4 col-md-12">
+            <div class="white-box analytics-info">
+                <h3 class="box-title"> Nombre de client</h3>
+                <ul class="list-inline two-part d-flex align-items-center mb-0">
+                    <li>
+                        <div id="sparklinedash3">
+                            <canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                        </div>
+                    </li>
+                    <li class="ms-auto"><span class="counter text-info">{{nombre_client}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- RECENT SALES -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="white-box">
+                <div class="d-md-flex mb-3">
+                    <h3 class="box-title mb-0">Clients récemment enregistrés</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table no-wrap">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">#</th>
+                                <th class="border-top-0">Nom & Prénom</th>
+                                <th class="border-top-0">Service</th>
+                                <th class="border-top-0">Contact</th>
+                                <th class="border-top-0">Date Expiration</th>
+                                <th class="border-top-0">Montant</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for client in clients %}
+                            <tr>
+                                <td>{{client.id}}</td>
+                                <td class="txt-oflo">{{client.client}}</td>
+                                <td>{{client.service.libelle}}</td>
+                                <td class="txt-oflo">{{client.client.contact}}</td>
+                                <td><span class="text-success">{{client.date_expiration}}</span></td>
+                                <td><span class="text-success">{{client.total_unitaire}}</span></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+
+
+{% endblock%}

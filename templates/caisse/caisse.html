@@ -1,0 +1,92 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block topbar %}
+    {% include 'base/topbar.html'%}
+{% endblock %}
+{% block left_sidebar %}
+    {% include 'base/left_sidebar.html'%}
+{% endblock %}
+{% block right_sidebar %}
+    <!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Caisse</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a href="{% url 'accueil' %}" class="fw-normal">Tableau de bord</a></li>
+                </ol>
+                <a href="#" class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+{% endblock %}
+{% block container %}
+<style>
+  /* Définition de l'animation */
+  @keyframes blink {
+    from { opacity: 1.0; }
+    to { opacity: 0.0; }
+  }
+
+  /* Application de l'animation à la classe "blink" */
+  .blink {
+    animation: blink 0.3s alternate infinite;
+  }
+</style>
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Three charts -->
+    <!-- ============================================================== -->
+    <div class="row justify-content-center " >
+        <div class="col-lg-4 col-md-12">
+            <div class="white-box analytics-info" style="background: yellow">
+                <h2>Total Du Jour</h2>
+                <ul class="list-inline two-part d-flex align-items-center mb-0">
+                    <div>
+                        <h2 > {{total}} </h2>
+                    </div>
+                </ul>
+            </div>
+        </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="white-box analytics-info" style="background: red">
+                    <h2>Total Charge</h2>
+                    <ul class="list-inline two-part d-flex align-items-center mb-0">
+                        <div>
+                            <h2></h2>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="white-box analytics-info">
+                <h2> Total dépense </h2>
+                <ul class="list-inline two-part d-flex align-items-center mb-0">
+                    <div>
+                        <h2></h2>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+
+
+{% endblock%}

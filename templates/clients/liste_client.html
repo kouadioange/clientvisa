@@ -1,0 +1,93 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block title %} Liste de tous les clients {% endblock %}
+
+{% block topbar %}
+    {% include 'base/topbar.html'%}
+{% endblock %}
+{% block left_sidebar %}
+    {% include 'base/left_sidebar.html'%}
+{% endblock %}
+{% block right_sidebar %}
+    <!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Liste de tous les clients </h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a href="{% url 'accueil' %}" class="fw-normal">Tableau de bord</a></li>
+                </ol>
+                <a href="{% url 'ajouter_client' %}" class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                    Ajouter un client
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+{% endblock %}
+{% block container %}
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Three charts -->
+    <!-- ============================================================== -->
+    <div class="row justify-content-center">
+        <div class="row">
+            <div class="col-lg-12 col-xlg-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-md-12 p-0" style="border-bottom: 3px black solid;">
+                            <h2> Liste </h2>
+                        </div>
+                        <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Nom & Prénom</th>
+                                            <th class="border-top-0">Sexe</th>
+                                            <th class="border-top-0">Nationalité</th>
+                                            <th class="border-top-0">Contact</th>
+                                            <th class="border-top-0">Adresse Email</th>
+                                            <th class="border-top-0">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for listes in liste %}
+                                            <tr>
+                                                <td>{{listes.id}}</td>
+                                                <td>{{listes.nom}} {{listes.prenom}}</td>
+                                                <td>{{listes.sexe}}</td>
+                                                <td>{{listes.nationalite}}</td>
+                                                <td>{{listes.contact}}</td>
+                                                <td>{{listes.email}}</td>
+                                                <td>
+                                                    <a href="#" style="margin-right: 20px; color:green"><i class="fas fa-eye"></i></a>
+                                                    <a href="#"><i class="fas fa-edit"></i></a>
+                                                    <a href="#" style="margin-left: 20px; color:red"><i class="fas fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+
+                                </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+
+{% endblock%}

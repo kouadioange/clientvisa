@@ -1,0 +1,159 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block title %} Enregistrement du client {% endblock %}
+
+{% block topbar %}
+    {% include 'base/topbar.html'%}
+{% endblock %}
+{% block left_sidebar %}
+    {% include 'base/left_sidebar.html'%}
+{% endblock %}
+{% block right_sidebar %}
+    <!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Enregistrement d'un client</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a href="{% url 'accueil' %}" class="fw-normal">Tableau de bord</a></li>
+                </ol>
+                <a href="{% url 'liste_client' %}" class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                    liste client
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+{% endblock %}
+{% block container %}
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Three charts -->
+    <!-- ============================================================== -->
+    <div class="row justify-content-center">
+        <div class="row">
+            <div class="col-lg-12 col-xlg-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" class="form-horizontal form-material">
+                            {% csrf_token %}
+                            <div class="col-md-12 p-0" style="border-bottom: 3px black solid;">
+                                <h2> INFORMATIONS PERSONNELLES</h2>
+                            </div>
+                            <div class="form-group mb-4" style="margin-top: 10px;">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label class="col-md-12 p-0">Nom</label>
+                                        <div class="col-md-12 p-0" style="border-bottom: 1px #732BF5 solid;">
+                                            <input type="text" placeholder="veuillez-entrez le nom" class="form-control p-0 border-0" name="nom_client" onkeyup="this.value=this.value.toUpperCase()" >
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <label class="col-md-12 p-0">Prénom</label>
+                                        <div class="col-md-12 p-0" style="border-bottom: 1px #732BF5 solid;">
+                                            <input type="text" placeholder="veuillez-entrez le Prénom" class="form-control p-0 border-0" name="prenom_client" onkeyup="this.value=this.value.toUpperCase()"  >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4" style="margin-top: 10px;">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="col-md-12 p-0">Nationalité</label>
+                                        <div class="col-md-12 p-0" style="border-bottom: 1px #732BF5 solid;">
+                                            <input type="text" placeholder="veuillez-entrez la nationalité" class="form-control p-0 border-0" name="nationalite_client" onkeyup="this.value=this.value.toUpperCase()" >
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col-md-12 p-0">Date de Naissance</label>
+                                        <div class="col-md-12 p-0" style="border-bottom: 1px #732BF5 solid;">
+                                            <input type="date"  class="form-control p-0 border-0" name="date_naissance_client"  >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Adresse Email</label>
+                                <div class="col-md-12 p-0" style="border-bottom: 1px #732BF5 solid;">
+                                    <input type="email" placeholder="veuillez-entrez votre Email" class="form-control p-0 border-0" name="email_client" >
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label class="col-md-12 p-0">Numéro de Téléphone</label>
+                                        <div class="col-md-12 p-0" style="border-bottom: 1px #732BF5 solid;">
+                                            <input type="text" placeholder="veuillez-entrez le contact ex:(07-02-03-04-05)" class="form-control p-0 border-0" name="contact_client" >
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label class="col-md-12 p-0">Sexe</label>
+                                        <div class="col-md-12 p-0" style="border-bottom: 1px #732BF5 solid;">
+                                            <select name="sexe_client" class="form-select shadow-none p-0 border-0 form-control-line" >
+                                                <option value="F"> FEMININ </option>
+                                                <option value="M"> MASCULIN </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label class="col-md-12 p-0">Résidence</label>
+                                        <div class="col-md-12 p-0" style="border-bottom: 1px #732BF5 solid;">
+                                            <input type="text" placeholder="veuillez-entrez la résidence" class="form-control p-0 border-0" name="residence_client" onkeyup="this.value=this.value.toUpperCase()" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0"> Carte d'Identité Nationale </label>
+                                <div class="col-md-12 p-0" style="border-bottom: 1px #732BF5 solid;">
+                                    <input type="file" class="form-control p-0 border-0" name="imagePiece_client">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 p-0" style="border-bottom: 3px black solid;margin-top: 10px">
+                                <h2> INFORMATIONS PASSEPORT</h2>
+                            </div>
+                            <div class="form-group mb-4" style="margin-top: 10px;">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="col-md-12 p-0">N° Passeport</label>
+                                        <div class="col-md-12 p-0" style="border-bottom: 1px #732BF5 solid;">
+                                            <input type="text" placeholder="veuillez-entrez le N° du passeport" class="form-control p-0 border-0" name="numeroPasseport_client" onkeyup="this.value=this.value.toUpperCase()" >
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col-md-12 p-0">Date Expiration</label>
+                                        <div class="col-md-12 p-0" style="border-bottom: 1px #732BF5 solid;">
+                                            <input type="date" placeholder="veuillez-entrez la Date d'expiration" class="form-control p-0 border-0" name="dateExpirationPasseport_client" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <button type="submit" name="btn_enregistrer" class="btn btn-success">Enregistrer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+
+{% endblock%}

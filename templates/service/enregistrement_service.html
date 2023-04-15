@@ -1,0 +1,96 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block title %} Enregistrement d'un service {% endblock %}
+
+{% block topbar %}
+    {% include 'base/topbar.html'%}
+{% endblock %}
+{% block left_sidebar %}
+    {% include 'base/left_sidebar.html'%}
+{% endblock %}
+{% block right_sidebar %}
+    <!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Enregistrement d'un Service</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a href="{% url 'accueil' %}" class="fw-normal">Tableau de bord</a></li>
+                </ol>
+                <a href="{% url 'tous_service' %}" class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                    liste des services
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+{% endblock %}
+{% block container %}
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Three charts -->
+    <!-- ============================================================== -->
+    <div class="row justify-content-center">
+        <div class="row">
+            <div class="col-lg-12 col-xlg-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" class="form-horizontal form-material">
+                            {% csrf_token %}
+                            <div class="col-md-12 p-0" style="border-bottom: 3px black solid;">
+                                <h2> ENREGISTRER UN SERVICE</h2>
+                            </div>
+                            <div class="form-group mb-4" style="margin-top: 10px;">
+                                <div class="row">
+                                    <div class="col-lg-3" >
+
+                                    </div>
+                                    <div class="col-lg-6" >
+                                        <div style="margin-top:10px">
+                                            <label class="col-md-12 p-0">Libellé du service</label>
+                                            <div class="col-md-12 p-0" >
+                                                <input type="text" style="border-radius: 6px; border: 1px solid black" placeholder="-------Ex:(VISA 1 mois , RESERVATION HOTEL 2 semaines,...)" onkeyup="this.value=this.value.toUpperCase()" class="form-control" name="libelle_service" required>
+                                            </div>
+                                        </div>
+                                        <div style="margin-top:10px">
+                                            <label class="col-md-12 p-0">Nombre de jours</label>
+                                            <div class="col-md-12 p-0" >
+                                                <input type="number" style="border-radius: 6px; border: 1px solid black" placeholder="-------Jours" class="form-control" name="jours_service" required>
+                                            </div>
+                                        </div>
+                                        <div style="margin-top:10px">
+                                            <label class="col-md-12 p-0">Montant</label>
+                                            <div class="col-md-12 p-0">
+                                                <input type="number" style="border-radius: 6px; border: 1px solid black" placeholder="--------Montant" class="form-control" name="montant_service" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3" >
+                                        <button type="submit" style="margin-top:110px;" name="btn_enregistrer" class="btn btn-success"> Enregistré </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-md-12 p-0" style="border-bottom: 3px black solid;">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+
+{% endblock%}
