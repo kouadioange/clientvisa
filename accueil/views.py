@@ -145,15 +145,12 @@ def info_client(request, pk):
     montant_service = 0
     if request.method == 'POST' and 'btn_facturer' in request.POST:
         clt = Client.objects.get(id=pk)
-        print(clt)
         recup_date = request.POST.getlist('date_debut')
         recup_montant = request.POST.getlist('montant')
         recup_destination = request.POST.getlist('destination')
         recup_jours = request.POST.getlist('nombre_jours')
-        recup_clt = request.POST.getlist('clt')
         recup_quantite = request.POST.getlist('quantite')
         recup_id_service = request.POST.getlist('id_service')
-        recup_client = request.POST.getlist('client')
         save_by = request.user
         total = 0
         for i in range(len(service)):
@@ -203,3 +200,33 @@ def caisse(request):
         'total': total_journalier
     }
     return render(request, 'caisse/caisse.html', context)
+
+def client_expirer(request):
+
+    verification = Appartenir.objects.all()
+    now = datetime.today()
+    date = "{}-{}-{}".format(now.year, now.month, now.day)
+    date1 = datetime.strptime(date, "%Y-%m-%d").date()
+
+    t = []
+    compte = 0
+    for expiration in verification:
+        date_d = expiration.date_debut
+        date_de = "{}-{}-{}".format(date_d.year, date_d.month, date_d.day)
+        date_debut = datetime.strptime(date_de, "%Y-%m-%d").date()
+        if date_debut <= date1:
+            date2 = expiration.date_expiration
+            date_expi = "{}-{}-{}".format(date2.year, date2.month, date2.day)
+            date_expiration = datetime.strptime(date_expi, "%Y-%m-%d").date()
+            date = date_expiration - date1
+            jours = date.days
+            if jours <= 10:
+                t += [expiration]
+                compte = compte + 1
+        else:
+            print("La date de debut n'a pas encore commencée")
+    context = {
+        'compte': compte,
+        'produit_expirer': t,
+    }
+    return render(request, 'clients/client_expirer.html', context)

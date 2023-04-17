@@ -12,4 +12,5 @@ urlpatterns = [
     path('choisir_client/', choisir_client, name='choisir_client'),
     path('info_client/<int:pk>/', info_client, name='info_client'),
     path('caisse/', caisse, name='caisse'),
+    path('client_a_appeler/', client_expirer, name='client_expirer'),
 ]

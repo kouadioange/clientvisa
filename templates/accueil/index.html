@@ -46,9 +46,11 @@
             </div>
         </div>
         {% if produit_expirer %}
-            <div class="col-lg-4 col-md-12 blink">
+
+        <div class="col-lg-4 col-md-12 blink">
+            <a href="{% url 'client_expirer' %}">
                 <div class="white-box analytics-info" style="background: red">
-                    <h3 class="box-title">Total Visa expirer</h3>
+                    <h3 class="box-title">Total Visa expirer <button class="btn btn-info" data-toggle="modal" data-target="#recherche_point"> voir</button></h3>
                     <ul class="list-inline two-part d-flex align-items-center mb-0">
                         <li>
                             <div id="sparklinedash2"><canvas width="67" height="30"
@@ -58,7 +60,9 @@
                         <li class="ms-auto"><span class="counter text-purple">{{compte}}</span></li>
                     </ul>
                 </div>
-            </div>
+            </a>
+        </div>
+
         {% endif %}
         <div class="col-lg-4 col-md-12">
             <div class="white-box analytics-info">
@@ -116,6 +120,23 @@
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
-
+<!-- Structure HTML pour le contenu du modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close modal-close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel">Titre du modal</h4>
+      </div>
+      <div class="modal-body">
+        Contenu du modal
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Enregistrer les modifications</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock%}
